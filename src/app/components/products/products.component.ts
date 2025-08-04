@@ -3,6 +3,7 @@ import { Category } from '../../interfaces/Category';
 import { Product } from '../../interfaces/Product';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-products',
@@ -13,6 +14,7 @@ import { ProductService } from '../../services/product.service';
 export class ProductsComponent implements OnInit {
   categories: Category[] = [];
 
+  deleteProduct: Product = {} as Product;
   product: Product = {} as Product;
   products: Product[] = [];
 
@@ -21,7 +23,8 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
-    private productService: ProductService
+    private productService: ProductService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -71,11 +74,16 @@ export class ProductsComponent implements OnInit {
     this.showForm = true;
     this.isEditing = true;
   }
-  delete(product: Product) {
-    this.productService.delete(product).subscribe({
-      next: () => {
-        this.products = this.products.filter((p) => p !== product);
-      },
+  delete(modal: any, product: Product) {
+    this.deleteProduct = product;
+    this.modalService.open(modal).result.then((confirm) => {
+      if (confirm) {
+        this.productService.delete(product).subscribe({
+          next: () => {
+            this.products = this.products.filter((p) => p !== product);
+          },
+        });
+      }
     });
   }
 }

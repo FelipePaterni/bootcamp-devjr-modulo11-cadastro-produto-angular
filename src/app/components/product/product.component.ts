@@ -9,7 +9,6 @@ import { Product } from '../../interfaces/Product';
   styleUrl: './product.component.css',
 })
 export class ProductComponent implements OnInit {
-
   @Input()
   categories: Category[] = [];
 
@@ -31,9 +30,7 @@ export class ProductComponent implements OnInit {
     this.saveEmitter.emit(false);
   }
 
-  selectedCategory(categoria1:Category, categoria2:Category):boolean{
-   return categoria1 && categoria2 ? categoria1.id === categoria2.id : false;
-
-  } 
-
+  selectedCategory(categoria1: Category, categoria2: Category): boolean {
+    return categoria1 && categoria2 ? categoria1.id === categoria2.id : false;
+  }
 }
