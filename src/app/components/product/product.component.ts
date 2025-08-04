@@ -5,31 +5,28 @@ import { Product } from '../../interfaces/Product';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-    standalone:false,
-  styleUrl: './product.component.css'
+  standalone: false,
+  styleUrl: './product.component.css',
 })
 export class ProductComponent implements OnInit {
+  @Input()
+  categories: Category[] = [];
 
   @Input()
-  categories : Category [] = [];
-
-  @Input()
-  product ?: Product;
+  product?: Product;
 
   @Output()
   saveEmitter = new EventEmitter();
-  
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  save() {
+    this.saveEmitter.emit(true);
   }
 
-  save(){
-    this.saveEmitter.emit();
+  cancelar() {
+    this.saveEmitter.emit(false);
   }
-
-  cancelar(){
-    this.product = {} as Product;
-  }
-
 }
