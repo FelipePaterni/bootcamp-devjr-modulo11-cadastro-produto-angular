@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { HomeComponent } from './components/home/home.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -23,6 +25,8 @@ registerLocaleData(localePt, 'pt');
     FooterComponent,
     HeaderComponent,
     NavbarComponent,
+    CategoriesComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

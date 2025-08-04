@@ -28,4 +28,8 @@ export class ProductComponent implements OnInit {
     this.saveEmitter.emit();
   }
 
+  cancelar(){
+    this.product = {} as Product;
+  }
+
 }
